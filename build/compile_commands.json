@@ -1,0 +1,128 @@
+[
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/main.cpp.o -c /home/kian/apps/study-planner/src/main.cpp",
+  "file": "/home/kian/apps/study-planner/src/main.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/app/application.cpp.o -c /home/kian/apps/study-planner/src/app/application.cpp",
+  "file": "/home/kian/apps/study-planner/src/app/application.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/app/application.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/app/config.cpp.o -c /home/kian/apps/study-planner/src/app/config.cpp",
+  "file": "/home/kian/apps/study-planner/src/app/config.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/app/config.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/db/connection.cpp.o -c /home/kian/apps/study-planner/src/db/connection.cpp",
+  "file": "/home/kian/apps/study-planner/src/db/connection.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/db/connection.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/db/migrations.cpp.o -c /home/kian/apps/study-planner/src/db/migrations.cpp",
+  "file": "/home/kian/apps/study-planner/src/db/migrations.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/db/migrations.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/db/statement.cpp.o -c /home/kian/apps/study-planner/src/db/statement.cpp",
+  "file": "/home/kian/apps/study-planner/src/db/statement.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/db/statement.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/repositories/subject_repo.cpp.o -c /home/kian/apps/study-planner/src/repositories/subject_repo.cpp",
+  "file": "/home/kian/apps/study-planner/src/repositories/subject_repo.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/repositories/subject_repo.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/repositories/task_repo.cpp.o -c /home/kian/apps/study-planner/src/repositories/task_repo.cpp",
+  "file": "/home/kian/apps/study-planner/src/repositories/task_repo.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/repositories/task_repo.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/repositories/session_repo.cpp.o -c /home/kian/apps/study-planner/src/repositories/session_repo.cpp",
+  "file": "/home/kian/apps/study-planner/src/repositories/session_repo.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/repositories/session_repo.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/repositories/study_set_repo.cpp.o -c /home/kian/apps/study-planner/src/repositories/study_set_repo.cpp",
+  "file": "/home/kian/apps/study-planner/src/repositories/study_set_repo.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/repositories/study_set_repo.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/repositories/plan_repo.cpp.o -c /home/kian/apps/study-planner/src/repositories/plan_repo.cpp",
+  "file": "/home/kian/apps/study-planner/src/repositories/plan_repo.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/repositories/plan_repo.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/services/task_service.cpp.o -c /home/kian/apps/study-planner/src/services/task_service.cpp",
+  "file": "/home/kian/apps/study-planner/src/services/task_service.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/services/task_service.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/services/timer_service.cpp.o -c /home/kian/apps/study-planner/src/services/timer_service.cpp",
+  "file": "/home/kian/apps/study-planner/src/services/timer_service.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/services/timer_service.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/services/analytics_service.cpp.o -c /home/kian/apps/study-planner/src/services/analytics_service.cpp",
+  "file": "/home/kian/apps/study-planner/src/services/analytics_service.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/services/analytics_service.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/services/planner_service.cpp.o -c /home/kian/apps/study-planner/src/services/planner_service.cpp",
+  "file": "/home/kian/apps/study-planner/src/services/planner_service.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/services/planner_service.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/console.cpp.o -c /home/kian/apps/study-planner/src/ui/console.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/console.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/console.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/commands/task_commands.cpp.o -c /home/kian/apps/study-planner/src/ui/commands/task_commands.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/commands/task_commands.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/commands/task_commands.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/commands/timer_commands.cpp.o -c /home/kian/apps/study-planner/src/ui/commands/timer_commands.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/commands/timer_commands.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/commands/timer_commands.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/commands/analytics_commands.cpp.o -c /home/kian/apps/study-planner/src/ui/commands/analytics_commands.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/commands/analytics_commands.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/commands/analytics_commands.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/commands/planner_commands.cpp.o -c /home/kian/apps/study-planner/src/ui/commands/planner_commands.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/commands/planner_commands.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/commands/planner_commands.cpp.o"
+},
+{
+  "directory": "/home/kian/apps/study-planner/build",
+  "command": "/usr/bin/g++  -I/home/kian/apps/study-planner/src -I/home/kian/apps/study-planner/third_party -g -std=c++20 -o CMakeFiles/study-planner.dir/src/ui/formatters/table_formatter.cpp.o -c /home/kian/apps/study-planner/src/ui/formatters/table_formatter.cpp",
+  "file": "/home/kian/apps/study-planner/src/ui/formatters/table_formatter.cpp",
+  "output": "CMakeFiles/study-planner.dir/src/ui/formatters/table_formatter.cpp.o"
+}
+]

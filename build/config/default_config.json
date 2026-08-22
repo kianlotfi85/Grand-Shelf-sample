@@ -1,0 +1,25 @@
+{
+  "database": {
+    "path": "study_planner.db"
+  },
+  "defaults": {
+    "pomodoro": {
+      "work_duration_seconds": 1500,
+      "break_duration_seconds": 300,
+      "long_break_seconds": 900,
+      "sessions_before_long_break": 4
+    }
+  },
+  "ui": {
+    "table_width": 80,
+    "date_format": "%Y-%m-%d",
+    "datetime_format": "%Y-%m-%d %H:%M:%S"
+  },
+  "ai": {
+    "enabled": false,
+    "provider": "openai",
+    "api_key_path": "",
+    "model": "gpt-4",
+    "temperature": 0.7
+  }
+}

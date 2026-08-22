@@ -1,0 +1,4 @@
+build/
+graphify-out/
+*.db
+workspacememory.md

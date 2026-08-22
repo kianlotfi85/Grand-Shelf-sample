@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Planner</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f1117;--bg2:#1a1d27;--bg3:#242836;--border:#2a2d3a;
+  --text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff;--accent2:#3fb950;
+  --red:#f85149;--yellow:#d2991d;--purple:#bc8cff;--orange:#f0883e;
+  --radius:8px;--shadow:0 2px 8px rgba(0,0,0,.3);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+.sidebar{width:220px;background:var(--bg2);border-right:1px solid var(--border);padding:20px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:10}
+.sidebar-logo{padding:0 20px 20px;font-size:18px;font-weight:700;color:var(--accent);border-bottom:1px solid var(--border);margin-bottom:10px}
+.sidebar-logo span{font-size:12px;color:var(--text2);display:block;font-weight:400}
+.sidebar-nav{flex:1;padding:0 10px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius);color:var(--text2);cursor:pointer;transition:all .15s;margin-bottom:2px;font-size:14px}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--accent);color:#fff}
+.nav-item .icon{font-size:16px;width:20px;text-align:center}
+.main{flex:1;margin-left:220px;padding:24px 32px;max-width:1200px}
+.page{display:none}
+.page.active{display:block}
+.page-title{font-size:24px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.stat-card .label{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.stat-card .value{font-size:28px;font-weight:700}
+.stat-card .value.accent{color:var(--accent)}
+.stat-card .value.green{color:var(--accent2)}
+.stat-card .value.red{color:var(--red)}
+.stat-card .value.yellow{color:var(--yellow)}
+.running-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(63,185,80,.15);color:var(--accent2);padding:4px 10px;border-radius:12px;font-size:12px;margin-top:8px}
+.pulse{width:8px;height:8px;background:var(--accent2);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer;font-size:13px;transition:all .15s;white-space:nowrap}
+.btn:hover{background:var(--border)}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:#4090e0}
+.btn-danger{color:var(--red);border-color:var(--red)}
+.btn-danger:hover{background:rgba(248,81,73,.1)}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn-group{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-title{font-size:16px;font-weight:600;margin-bottom:12px;color:var(--text)}
+input,select,textarea{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;color:var(--text);font-size:13px;width:100%;outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:60px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(88,166,255,.03)}
+.kanban{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.kanban-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px;min-height:200px}
+.kanban-col h3{font-size:14px;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid var(--border);text-transform:uppercase;letter-spacing:.5px}
+.kanban-col.todo h3{color:var(--text2)}
+.kanban-col.in_progress h3{color:var(--yellow)}
+.kanban-col.completed h3{color:var(--accent2)}
+.kanban-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.kanban-card:hover{border-color:var(--accent)}
+.kanban-card .task-title{font-weight:600;font-size:13px;margin-bottom:4px}
+.kanban-card .task-meta{font-size:11px;color:var(--text2);display:flex;gap:8px;flex-wrap:wrap}
+.kanban-card .task-actions{margin-top:8px;display:flex;gap:6px}
+.priority-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.priority-high{background:var(--red)}
+.priority-med{background:var(--yellow)}
+.priority-low{background:var(--text2)}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;text-transform:uppercase}
+.badge-todo{background:rgba(139,148,158,.15);color:var(--text2)}
+.badge-progress{background:rgba(210,153,29,.15);color:var(--yellow)}
+.badge-done{background:rgba(63,185,80,.15);color:var(--accent2)}
+.chart-container{width:100%;height:300px;position:relative}
+.timer-display{text-align:center;padding:30px}
+.timer-time{font-size:64px;font-weight:700;font-family:'SF Mono',monospace;color:var(--accent)}
+.timer-label{font-size:14px;color:var(--text2);margin-top:8px}
+.timer-controls{display:flex;gap:12px;justify-content:center;margin-top:20px}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:100;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;width:90%;max-width:500px;max-height:80vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.modal-title{font-size:18px;font-weight:700;margin-bottom:16px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.empty-state{text-align:center;padding:40px;color:var(--text2)}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.section-divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+.progress-bar{height:6px;background:var(--bg);border-radius:3px;margin-top:8px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .3s}
+.color-dot{width:12px;height:12px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:middle}
+.toast{position:fixed;bottom:20px;right:20px;padding:12px 20px;border-radius:var(--radius);color:#fff;font-size:13px;z-index:200;animation:slideIn .3s;box-shadow:var(--shadow)}
+.toast-success{background:var(--accent2)}
+.toast-error{background:var(--red)}
+@keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo">Study Planner<span>v1.0</span></div>
+  <div class="sidebar-nav">
+    <div class="nav-item active" data-page="dashboard"><span class="icon">📊</span> Dashboard</div>
+    <div class="nav-item" data-page="subjects"><span class="icon">📚</span> Subjects</div>
+    <div class="nav-item" data-page="tasks"><span class="icon">✅</span> Tasks</div>
+    <div class="nav-item" data-page="timer"><span class="icon">⏱</span> Timer</div>
+    <div class="nav-item" data-page="analytics"><span class="icon">📈</span> Analytics</div>
+    <div class="nav-item" data-page="planner"><span class="icon">📅</span> Planner</div>
+  </div>
+</div>
+
+<div class="main">
+  <!-- Dashboard -->
+  <div id="page-dashboard" class="page active">
+    <div class="page-title">Dashboard</div>
+    <div class="stats-grid" id="dash-stats"></div>
+    <div class="card">
+      <div class="card-title">Recent Sessions</div>
+      <div id="recent-sessions"></div>
+    </div>
+  </div>
+
+  <!-- Subjects -->
+  <div id="page-subjects" class="page">
+    <div class="page-title">Subjects</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="showSubjectModal()">+ Add Subject</button>
+    </div>
+    <div id="subjects-list"></div>
+  </div>
+
+  <!-- Tasks -->
+  <div id="page-tasks" class="page">
+    <div class="page-title">Tasks</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="showTaskModal()">+ Add Task</button>
+      <select id="task-filter-subject" onchange="loadTasks()" style="width:auto">
+        <option value="">All Subjects</option>
+      </select>
+    </div>
+    <div class="kanban" id="kanban"></div>
+  </div>
+
+  <!-- Timer -->
+  <div id="page-timer" class="page">
+    <div class="page-title">Study Timer</div>
+    <div class="card" id="timer-card">
+      <div class="timer-display">
+        <div class="timer-time" id="timer-display">00:00:00</div>
+        <div class="timer-label" id="timer-label">Ready to study</div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="timer-start-btn" onclick="startTimer()">▶ Start</button>
+          <button class="btn btn-danger" id="timer-stop-btn" onclick="stopTimer()" style="display:none">⏹ Stop</button>
+        </div>
+      </div>
+    </div>
+    <div id="running-session-info" style="display:none" class="card">
+      <div class="card-title">Current Session</div>
+      <div id="session-info-content"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">Pomodoro Sets</div>
+      <div id="pomodoro-sets"></div>
+    </div>
+  </div>
+
+  <!-- Analytics -->
+  <div id="page-analytics" class="page">
+    <div class="page-title">Analytics</div>
+    <div class="form-row" style="margin-bottom:16px">
+      <div class="form-group"><label>Start Date</label><input type="date" id="analytics-start"></div>
+      <div class="form-group"><label>End Date</label><input type="date" id="analytics-end"></div>
+    </div>
+    <button class="btn btn-primary" onclick="loadAnalytics()" style="margin-bottom:16px">Load Data</button>
+    <div class="card"><div class="card-title">Study Time by Subject</div><div class="chart-container"><canvas id="chart-subject"></canvas></div></div>
+    <div class="card"><div class="card-title">Daily Study Time</div><div class="chart-container"><canvas id="chart-daily"></canvas></div></div>
+  </div>
+
+  <!-- Planner -->
+  <div id="page-planner" class="page">
+    <div class="page-title">Planner</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="showPlanModal()">+ Add Plan</button>
+      <input type="date" id="plan-date" onchange="loadPlans()" style="width:auto">
+    </div>
+    <div id="plans-list"></div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="subject-modal">
+  <div class="modal">
+    <div class="modal-title">Add Subject</div>
+    <div class="form-group"><label>Name</label><input id="subj-name" placeholder="e.g. Mathematics"></div>
+    <div class="form-group"><label>Description</label><textarea id="subj-desc" placeholder="Optional"></textarea></div>
+    <div class="form-group"><label>Color</label><input id="subj-color" type="color" value="#4A90D9"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('subject-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createSubject()">Create</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="task-modal">
+  <div class="modal">
+    <div class="modal-title">Add Task</div>
+    <div class="form-group"><label>Subject</label><select id="task-subject"></select></div>
+    <div class="form-group"><label>Title</label><input id="task-title" placeholder="Task title"></div>
+    <div class="form-group"><label>Description</label><textarea id="task-desc" placeholder="Optional"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label>Priority</label><select id="task-priority"><option value="0">Low</option><option value="1" selected>Medium</option><option value="2">High</option></select></div>
+      <div class="form-group"><label>Est. Minutes</label><input id="task-est" type="number" value="30" min="1"></div>
+    </div>
+    <div class="form-group"><label>Due Date</label><input id="task-due" type="date"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('task-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createTask()">Create</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="plan-modal">
+  <div class="modal">
+    <div class="modal-title">Add Plan</div>
+    <div class="form-group"><label>Subject</label><select id="plan-subject"></select></div>
+    <div class="form-row">
+      <div class="form-group"><label>Type</label><select id="plan-type"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select></div>
+      <div class="form-group"><label>Target Date</label><input id="plan-target-date" type="date"></div>
+    </div>
+    <div class="form-group"><label>Target Minutes</label><input id="plan-minutes" type="number" value="60" min="1"></div>
+    <div class="form-group"><label>Description</label><textarea id="plan-desc" placeholder="Optional"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('plan-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createPlan()">Create</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const API = '';
+
+function $(id){return document.getElementById(id)}
+function qs(sel){return document.querySelector(sel)}
+function qsa(sel){return document.querySelectorAll(sel)}
+
+async function api(method, path, body){
+  const opts={method,headers:{'Content-Type':'application/json'}};
+  if(body)opts.body=JSON.stringify(body);
+  const r=await fetch(API+path,opts);
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error||'Request failed')}
+  return r.json();
+}
+
+function toast(msg,type='success'){
+  const t=$('toast');
+  t.className='toast toast-'+type;t.textContent=msg;
+  setTimeout(()=>t.className='',3000);
+}
+
+function fmtDuration(s){
+  if(!s||s==0)return '0m';
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60);
+  return h>0?h+'h '+m+'m':m+'m';
+}
+
+function fmtDate(d){return d?d.split(' ')[0]:''}
+
+// Navigation
+qsa('.nav-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    qsa('.nav-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+    qsa('.page').forEach(p=>p.classList.remove('active'));
+    $('page-'+item.dataset.page).classList.add('active');
+    const loaders={dashboard:loadDashboard,subjects:loadSubjects,tasks:loadTasks,timer:loadTimer,analytics:()=>{},planner:loadPlans};
+    if(loaders[item.dataset.page])loaders[item.dataset.page]();
+  });
+});
+
+function closeModal(id){$(id).classList.remove('show')}
+
+// ===== Dashboard =====
+async function loadDashboard(){
+  const d=await api('GET','/api/dashboard');
+  $('dash-stats').innerHTML=`
+    <div class="stat-card"><div class="label">Subjects</div><div class="value accent">${d.subject_count}</div></div>
+    <div class="stat-card"><div class="label">Active Tasks</div><div class="value yellow">${d.active_tasks}</div></div>
+    <div class="stat-card"><div class="label">Completed Tasks</div><div class="value green">${d.completed_tasks}</div></div>
+    <div class="stat-card"><div class="label">Today's Study</div><div class="value accent">${fmtDuration(d.today_seconds)}</div></div>
+    <div class="stat-card"><div class="label">Total Study Time</div><div class="value">${fmtDuration(d.total_seconds)}</div></div>
+    <div class="stat-card">${d.running_session?`<div class="label">Status</div><div class="running-badge"><span class="pulse"></span>Session Active</div>`:`<div class="label">Status</div><div class="value" style="font-size:16px;color:var(--text2)">Idle</div>`}</div>`;
+  const sessions=await api('GET','/api/sessions?limit=5');
+  $('recent-sessions').innerHTML=sessions.length?
+    `<table><tr><th>Subject</th><th>Start</th><th>Duration</th><th>Notes</th></tr>${sessions.map(s=>`<tr><td>${s.subject_name||'?'}</td><td>${fmtDate(s.start_time)}</td><td>${fmtDuration(s.duration_seconds)}</td><td>${s.notes||'-'}</td></tr>`).join('')}</table>`:
+    '<div class="empty-state"><div class="icon">⏱</div>No sessions yet</div>';
+}
+
+// ===== Subjects =====
+async function loadSubjects(){
+  const subs=await api('GET','/api/subjects');
+  if(!subs.length){$('subjects-list').innerHTML='<div class="empty-state"><div class="icon">📚</div>No subjects yet. Add one to get started.</div>';return}
+  $('subjects-list').innerHTML=`
+    <table><tr><th>ID</th><th>Color</th><th>Name</th><th>Description</th><th>Actions</th></tr>
+    ${subs.map(s=>`<tr><td>${s.id}</td><td><span class="color-dot" style="background:${s.color}"></span></td><td><strong>${s.name}</strong></td><td>${s.description||'-'}</td><td><button class="btn btn-danger btn-sm" onclick="deleteSubject(${s.id})">Delete</button></td></tr>`).join('')}</table>`;
+  // Update task/plan subject selects
+  const opts=subs.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+  $('task-subject').innerHTML=opts;
+  $('task-filter-subject').innerHTML='<option value="">All Subjects</option>'+opts;
+  $('plan-subject').innerHTML=opts;
+}
+
+function showSubjectModal(){$('subject-modal').classList.add('show')}
+async function createSubject(){
+  const name=$('subj-name').value.trim(),desc=$('subj-desc').value.trim(),color=$('subj-color').value;
+  if(!name){toast('Name is required','error');return}
+  await api('POST','/api/subjects',{name,description:desc,color});
+  closeModal('subject-modal');$('subj-name').value='';$('subj-desc').value='';
+  toast('Subject created');loadSubjects();loadDashboard();
+}
+async function deleteSubject(id){
+  if(!confirm('Delete this subject and all its tasks?'))return;
+  await api('DELETE','/api/subjects/'+id);
+  toast('Subject deleted');loadSubjects();loadDashboard();
+}
+
+// ===== Tasks =====
+async function loadTasks(){
+  const sid=$('task-filter-subject').value;
+  const tasks=await api('GET','/api/tasks'+(sid?'?subject_id='+sid:''));
+  const todo=tasks.filter(t=>t.status==='todo');
+  const progress=tasks.filter(t=>t.status==='in_progress');
+  const done=tasks.filter(t=>t.status==='completed');
+  const card=t=>`
+    <div class="kanban-card">
+      <div class="task-title"><span class="priority-dot priority-${['low','med','high'][t.priority||0]}"></span> ${t.title}</div>
+      <div class="task-meta"><span>${t.subject_name||'?'}</span>${t.estimated_minutes?`<span>${t.estimated_minutes}m</span>`:''}${t.due_date?`<span>Due: ${t.due_date}</span>`:''}</div>
+      <div class="task-actions">
+        ${t.status!=='todo'?`<button class="btn btn-sm" onclick="moveTask(${t.id},'todo')">← Todo</button>`:''}
+        ${t.status!=='in_progress'?`<button class="btn btn-sm" onclick="moveTask(${t.id},'in_progress')">Start</button>`:''}
+        ${t.status!=='completed'?`<button class="btn btn-sm btn-primary" onclick="moveTask(${t.id},'completed')">Done</button>`:''}
+        <button class="btn btn-sm btn-danger" onclick="deleteTask(${t.id})">✕</button>
+      </div>
+    </div>`;
+  $('kanban').innerHTML=`
+    <div class="kanban-col todo"><h3>📋 Todo (${todo.length})</h3>${todo.map(card).join('')||'<div class="empty-state" style="font-size:12px;padding:20px">No tasks</div>'}</div>
+    <div class="kanban-col in_progress"><h3>🔄 In Progress (${progress.length})</h3>${progress.map(card).join('')||'<div class="empty-state" style="font-size:12px;padding:20px">No tasks</div>'}</div>
+    <div class="kanban-col completed"><h3>✅ Completed (${done.length})</h3>${done.map(card).join('')||'<div class="empty-state" style="font-size:12px;padding:20px">No tasks</div>'}</div>`;
+}
+
+function showTaskModal(){loadSubjects();$('task-modal').classList.add('show')}
+async function createTask(){
+  const title=$('task-title').value.trim();
+  if(!title){toast('Title is required','error');return}
+  await api('POST','/api/tasks',{
+    subject_id:parseInt($('task-subject').value),
+    title,description:$('task-desc').value.trim(),
+    priority:parseInt($('task-priority').value),
+    estimated_minutes:parseInt($('task-est').value)||0,
+    due_date:$('task-due').value||null
+  });
+  closeModal('task-modal');$('task-title').value='';$('task-desc').value='';
+  toast('Task created');loadTasks();loadDashboard();
+}
+async function moveTask(id,status){
+  await api('PUT','/api/tasks/'+id+'/status',{status});
+  loadTasks();loadDashboard();
+}
+async function deleteTask(id){
+  await api('DELETE','/api/tasks/'+id);
+  toast('Task deleted');loadTasks();loadDashboard();
+}
+
+// ===== Timer =====
+let timerInterval=null,timerSeconds=0,runningSessionId=null;
+
+async function loadTimer(){
+  const d=await api('GET','/api/dashboard');
+  if(d.running_session){
+    runningSessionId=d.running_session.id;
+    $('running-session-info').style.display='block';
+    $('session-info-content').innerHTML=`<p>Started: ${d.running_session.start_time}</p><p>Subject ID: ${d.running_session.subject_id}</p>`;
+    $('timer-start-btn').style.display='none';$('timer-stop-btn').style.display='inline-flex';
+    $('timer-label').textContent='Session in progress...';
+    timerSeconds=Math.floor((Date.now()/1000)-new Date(d.running_session.start_time+'Z').getTime()/1000);
+    updateTimerDisplay();
+    if(!timerInterval){timerInterval=setInterval(()=>{timerSeconds++;updateTimerDisplay()},1000)}
+  }else{
+    runningSessionId=null;
+    $('running-session-info').style.display='none';
+    $('timer-start-btn').style.display='inline-flex';$('timer-stop-btn').style.display='none';
+    if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+    timerSeconds=0;$('timer-label').textContent='Ready to study';updateTimerDisplay();
+  }
+  // Load pomodoro sets
+  const sets=await api('GET','/api/study-sets');
+  $('pomodoro-sets').innerHTML=sets.length?sets.map(s=>`
+    <div class="card" style="margin-bottom:8px">
+      <strong>${s.name}</strong>
+      <span style="color:var(--text2);font-size:12px;margin-left:8px">${s.work_duration_seconds/60}m work / ${s.break_duration_seconds/60}m break</span>
+    </div>`).join(''):'<div class="empty-state" style="font-size:12px">No study sets. Create one from the CLI.</div>';
+}
+
+function updateTimerDisplay(){
+  const h=Math.floor(timerSeconds/3600),m=Math.floor((timerSeconds%3600)/60),s=timerSeconds%60;
+  $('timer-display').textContent=[h,m,s].map(v=>String(v).padStart(2,'0')).join(':');
+}
+
+async function startTimer(){
+  const subs=await api('GET','/api/subjects');
+  if(!subs.length){toast('Create a subject first','error');return}
+  const sid=prompt('Subject ID?\n'+subs.map(s=>s.id+': '+s.name).join('\n'));
+  if(!sid)return;
+  const r=await api('POST','/api/sessions',{subject_id:parseInt(sid)});
+  runningSessionId=r.id;
+  timerSeconds=0;updateTimerDisplay();
+  timerInterval=setInterval(()=>{timerSeconds++;updateTimerDisplay()},1000);
+  $('timer-start-btn').style.display='none';$('timer-stop-btn').style.display='inline-flex';
+  $('timer-label').textContent='Session in progress...';
+  toast('Session started');
+}
+
+async function stopTimer(){
+  if(!runningSessionId)return;
+  const r=await api('PUT','/api/sessions/'+runningSessionId+'/stop');
+  clearInterval(timerInterval);timerInterval=null;
+  timerSeconds=0;runningSessionId=null;
+  $('timer-start-btn').style.display='inline-flex';$('timer-stop-btn').style.display='none';
+  $('timer-label').textContent='Ready to study';updateTimerDisplay();
+  $('running-session-info').style.display='none';
+  toast('Session stopped. Duration: '+fmtDuration(r.duration_seconds));
+  loadDashboard();
+}
+
+// ===== Analytics =====
+async function loadAnalytics(){
+  const start=$('analytics-start').value||new Date(Date.now()-7*86400000).toISOString().split('T')[0];
+  const end=$('analytics-end').value||new Date().toISOString().split('T')[0];
+  $('analytics-start').value=start;$('analytics-end').value=end;
+  const [bySubj,daily]=await Promise.all([
+    api('GET','/api/analytics/by-subject?start='+start+'&end='+end),
+    api('GET','/api/analytics/daily?start='+start+'&end='+end)
+  ]);
+  drawBarChart('chart-subject',bySubj.map(s=>({label:s.name,value:s.total_seconds,color:s.color})),'seconds');
+  drawLineChart('chart-daily',daily.map(d=>({label:d.date,value:d.total_seconds})),'seconds');
+}
+
+function drawBarChart(canvasId,data,unit){
+  const c=$(canvasId),ctx=c.getContext('2d');
+  const W=c.width=c.parentElement.clientWidth,H=c.height=300;
+  if(!data.length){ctx.fillStyle='#8b949e';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('No data',W/2,H/2);return}
+  const max=Math.max(...data.map(d=>d.value),1);
+  const barW=Math.min(60,(W-60)/data.length-10);
+  const chartH=H-60;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#2a2d3a';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(40,H-30);ctx.lineTo(W-10,H-30);ctx.stroke();
+  data.forEach((d,i)=>{
+    const x=50+i*(barW+10),h=(d.value/max)*chartH;
+    ctx.fillStyle=d.color||'#58a6ff';ctx.fillRect(x,H-30-h,barW,h);
+    ctx.fillStyle='#8b949e';ctx.font='10px sans-serif';ctx.textAlign='center';
+    ctx.fillText(d.label.substring(5),x+barW/2,H-15);
+    if(d.value>0){ctx.fillStyle='#c9d1d9';ctx.font='11px sans-serif';ctx.fillText(fmtDuration(d.value),x+barW/2,H-35-h)}
+  });
+}
+
+function drawLineChart(canvasId,data,unit){
+  const c=$(canvasId),ctx=c.getContext('2d');
+  const W=c.width=c.parentElement.clientWidth,H=c.height=300;
+  if(!data.length){ctx.fillStyle='#8b949e';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('No data',W/2,H/2);return}
+  const max=Math.max(...data.map(d=>d.value),1);
+  const chartW=W-60,chartH=H-60;
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#2a2d3a';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(40,H-30);ctx.lineTo(W-10,H-30);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(40,H-30);ctx.lineTo(40,10);ctx.stroke();
+  ctx.beginPath();ctx.strokeStyle='#58a6ff';ctx.lineWidth=2;
+  data.forEach((d,i)=>{
+    const x=50+(i/(data.length-1||1))*chartW;
+    const y=H-30-(d.value/max)*chartH;
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+  data.forEach((d,i)=>{
+    const x=50+(i/(data.length-1||1))*chartW;
+    const y=H-30-(d.value/max)*chartH;
+    ctx.fillStyle='#58a6ff';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+    if(i%Math.ceil(data.length/7)===0||i===data.length-1){
+      ctx.fillStyle='#8b949e';ctx.font='10px sans-serif';ctx.textAlign='center';
+      ctx.fillText(d.label.substring(5),x,H-15);
+    }
+  });
+}
+
+// ===== Planner =====
+async function loadPlans(){
+  const date=$('plan-date').value||new Date().toISOString().split('T')[0];
+  $('plan-date').value=date;
+  const [plans,progress]=await Promise.all([
+    api('GET','/api/plans?date='+date),
+    api('GET','/api/plans/progress?date='+date)
+  ]);
+  if(!progress.length){$('plans-list').innerHTML='<div class="empty-state"><div class="icon">📅</div>No plans for this date</div>';return}
+  $('plans-list').innerHTML=progress.map(p=>`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div><strong>${p.subject_name}</strong> <span class="badge badge-${p.is_completed?'done':'todo'}">${p.plan_type}</span></div>
+        <div style="text-align:right">
+          <span style="font-size:20px;font-weight:700;color:var(--accent)">${p.actual_minutes}</span>
+          <span style="color:var(--text2)"> / ${p.target_minutes} min</span>
+        </div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(p.completion_pct,100)}%"></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">${p.completion_pct}% complete</div>
+      ${!p.is_completed?`<button class="btn btn-sm btn-primary" style="margin-top:8px" onclick="completePlan(${p.id})">Mark Complete</button>`:''}
+      <button class="btn btn-sm btn-danger" style="margin-top:8px;margin-left:4px" onclick="deletePlan(${p.id})">Delete</button>
+    </div>`).join('');
+}
+
+function showPlanModal(){loadSubjects();$('plan-modal').classList.add('show')}
+async function createPlan(){
+  const sid=$('plan-subject').value,type=$('plan-type').value,date=$('plan-target-date').value;
+  const mins=$('plan-minutes').value,desc=$('plan-desc').value.trim();
+  if(!date){toast('Date is required','error');return}
+  await api('POST','/api/plans',{subject_id:parseInt(sid),plan_type:type,target_date:date,target_minutes:parseInt(mins),description:desc});
+  closeModal('plan-modal');toast('Plan created');$('plan-date').value=date;loadPlans();
+}
+async function completePlan(id){await api('PUT','/api/plans/'+id+'/complete');toast('Plan completed');loadPlans();loadDashboard()}
+async function deletePlan(id){await api('DELETE','/api/plans/'+id);toast('Plan deleted');loadPlans()}
+
+// Init
+loadDashboard();
+</script>
+</body>
+</html>

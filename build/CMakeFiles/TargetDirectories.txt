@@ -1,0 +1,3 @@
+/home/kian/apps/study-planner/build/CMakeFiles/study-planner.dir
+/home/kian/apps/study-planner/build/CMakeFiles/edit_cache.dir
+/home/kian/apps/study-planner/build/CMakeFiles/rebuild_cache.dir

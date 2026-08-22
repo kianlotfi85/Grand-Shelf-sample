@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-22T20:39:54.257Z",
+  "generatedAtEpochMs": 1787431194257,
+  "generator": {
+    "name": "Code Janitor",
+    "feature": "workspace-memory"
+  },
+  "handoffGuidance": [
+    "Read graphify-out/GRAPH_REPORT.md first for architecture and dependency questions.",
+    "Use workspace.json for machine-readable repo context before scanning broad parts of the repository.",
+    "Use graphify-out/WORKSPACE_MEMORY.md and workspacememory.md for human-readable handoff notes, recent changes, and Git-aware status."
+  ],
+  "workspace": {
+    "name": "study-planner",
+    "root": "/home/kian/apps/study-planner",
+    "activeFile": null,
+    "refreshReason": "startup",
+    "outputFiles": {
+      "markdown": "graphify-out/WORKSPACE_MEMORY.md",
+      "markdownMirror": "workspacememory.md",
+      "structuredManifest": "workspace.json"
+    },
+    "suggestedStartingPoints": [
+      "src/ai/README.md"
+    ],
+    "stats": {
+      "totalFiles": 65,
+      "topLevelAreas": [
+        {
+          "name": "src",
+          "count": 54
+        },
+        {
+          "name": "third_party",
+          "count": 5
+        },
+        {
+          "name": "[root]",
+          "count": 3
+        },
+        {
+          "name": "frontend",
+          "count": 2
+        },
+        {
+          "name": "config",
+          "count": 1
+        }
+      ],
+      "primaryFileTypes": [
+        {
+          "name": ".h",
+          "count": 34
+        },
+        {
+          "name": ".cpp",
+          "count": 23
+        },
+        {
+          "name": ".db",
+          "count": 1
+        },
+        {
+          "name": ".hpp",
+          "count": 1
+        },
+        {
+          "name": ".html",
+          "count": 1
+        },
+        {
+          "name": ".json",
+          "count": 1
+        },
+        {
+          "name": ".md",
+          "count": 1
+        },
+        {
+          "name": ".py",
+          "count": 1
+        }
+      ],
+      "keyFiles": [
+        "src/ai/README.md"
+      ],
+      "fileInventory": [
+        {
+          "path": "CMakeLists.txt",
+          "topLevelArea": "[root]",
+          "extension": ".txt",
+          "isKeyFile": false
+        },
+        {
+          "path": "config/default_config.json",
+          "topLevelArea": "config",
+          "extension": ".json",
+          "isKeyFile": false
+        },
+        {
+          "path": "frontend/index.html",
+          "topLevelArea": "frontend",
+          "extension": ".html",
+          "isKeyFile": false
+        },
+        {
+          "path": "frontend/server.py",
+          "topLevelArea": "frontend",
+          "extension": ".py",
+          "isKeyFile": false
+        },
+        {
+          "path": "Makefile",
+          "topLevelArea": "[root]",
+          "extension": "[no extension]",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ai/ai_provider.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ai/README.md",
+          "topLevelArea": "src",
+          "extension": ".md",
+          "isKeyFile": true
+        },
+        {
+          "path": "src/app/application.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/app/application.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/app/config.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/app/config.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/connection.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/connection.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/migrations.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/migrations.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/statement.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/db/statement.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/main.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/plan_block.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/plan.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/set_session.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/study_session.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/study_set.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/subject.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/models/task.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/plan_repo.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/plan_repo.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/session_repo.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/session_repo.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/study_set_repo.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/study_set_repo.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/subject_repo.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/subject_repo.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/task_repo.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/repositories/task_repo.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/analytics_service.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/analytics_service.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/planner_service.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/planner_service.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/task_service.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/task_service.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/timer_service.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/services/timer_service.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/analytics_commands.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/analytics_commands.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/planner_commands.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/planner_commands.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/task_commands.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/task_commands.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/timer_commands.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/commands/timer_commands.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/console.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/console.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/formatters/table_formatter.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/ui/formatters/table_formatter.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/util/json.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/util/json.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/util/time.cpp",
+          "topLevelArea": "src",
+          "extension": ".cpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "src/util/time.h",
+          "topLevelArea": "src",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "study_planner.db",
+          "topLevelArea": "[root]",
+          "extension": ".db",
+          "isKeyFile": false
+        },
+        {
+          "path": "third_party/fmt/chrono.h",
+          "topLevelArea": "third_party",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "third_party/fmt/color.h",
+          "topLevelArea": "third_party",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "third_party/fmt/core.h",
+          "topLevelArea": "third_party",
+          "extension": ".h",
+          "isKeyFile": false
+        },
+        {
+          "path": "third_party/nlohmann/json.hpp",
+          "topLevelArea": "third_party",
+          "extension": ".hpp",
+          "isKeyFile": false
+        },
+        {
+          "path": "third_party/sqlite3/sqlite3.h",
+          "topLevelArea": "third_party",
+          "extension": ".h",
+          "isKeyFile": false
+        }
+      ]
+    }
+  },
+  "package": {
+    "available": false,
+    "error": "package.json was not found."
+  },
+  "currentStack": {
+    "lastActivityAt": "",
+    "trackedChangeCount": 0,
+    "trackedFileSnapshotCount": 0,
+    "changeTypeCounts": {
+      "save": 0,
+      "create": 0,
+      "delete": 0,
+      "rename": 0
+    }
+  },
+  "trackedSnapshots": [],
+  "recentChanges": [],
+  "hotFiles": [],
+  "git": {
+    "available": false,
+    "branch": "",
+    "headSummary": "",
+    "statusSummary": "",
+    "changedFileCount": 0,
+    "statusLines": [],
+    "error": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "github": {
+    "available": false,
+    "summary": "Could not determine the GitHub repository from origin remote: fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "graphify": {
+    "reportAvailable": false,
+    "graphAvailable": false,
+    "reportPath": "",
+    "graphPath": "",
+    "highlights": ""
+  },
+  "projectPlanner": null,
+  "agentNotes": [
+    "For recent repo changes, check recentChanges, trackedSnapshots, hotFiles, and git.",
+    "For architecture questions, combine graphify highlights with the Graphify report.",
+    "For machine-readable repo context, prefer this workspace.json manifest before broad repo scans."
+  ]
+}
