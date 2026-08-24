@@ -1,6 +1,6 @@
 # Workspace Memory
 This file is maintained automatically by Code Janitor so Claude, Codex, Bob, and any other AI agent can reuse repo context without rescanning everything from scratch.
-Generated: 2026-08-22T20:39:54.257Z
+Generated: 2026-08-23T12:57:37.358Z
 Workspace: study-planner
 Workspace root: /home/kian/apps/study-planner
 Refresh reason: startup
@@ -18,22 +18,22 @@ Structured manifest: workspace.json
 - Graphify graph: not available yet
 - Last activity: no tracked activity yet
 ## Workspace Focus
-- Active file in focus: No active file detected
+- Active file in focus: .git/COMMIT_EDITMSG
 - Hottest files right now: none yet
-- Suggested starting points: src/ai/README.md
+- Suggested starting points: .git/COMMIT_EDITMSG, .gitignore, src/ai/README.md
 ## Current Workspace
-- Active file: No active file detected
-- Tracked files in snapshot: 65
-- Top-level areas: src (54), third_party (5), [root] (3), frontend (2), config (1)
-- Primary file types: .h (34), .cpp (23), .db (1), .hpp (1), .html (1), .json (1), .md (1), .py (1)
-- Key files: src/ai/README.md
+- Active file: .git/COMMIT_EDITMSG
+- Tracked files in snapshot: 68
+- Top-level areas: src (54), [root] (6), third_party (5), frontend (2), config (1)
+- Primary file types: .h (34), .cpp (23), .json (2), .md (2), [no extension] (2), .db (1), .hpp (1), .html (1)
+- Key files: .gitignore, src/ai/README.md
 ## Package Snapshot
 - Package metadata unavailable: package.json was not found.
 ## Current Stack
 - Logged change events: 0
 - Change mix: none yet
 - Remembered file snapshots: 0
-- Working tree summary: fatal: not a git repository (or any of the parent directories): .git
+- Working tree summary: clean
 ## Tracked Snapshots
 - No remembered file snapshots yet.
 
@@ -44,10 +44,13 @@ Structured manifest: workspace.json
 - No hotspots yet.
 
 ## Git Snapshot
-- fatal: not a git repository (or any of the parent directories): .git
+- Branch: main
+- HEAD: 2026-08-23 a4018b4 Initial commit
+- Working tree summary: clean
+- Working tree: clean
 
 ## GitHub Snapshot
-GitHub context unavailable: Could not determine the GitHub repository from origin remote: fatal: not a git repository (or any of the parent directories): .git
+GitHub context unavailable: fetch failed
 
 ## Graphify Snapshot
 Graphify report not found. Generate Graphify output if you want architecture-aware memory excerpts here.
