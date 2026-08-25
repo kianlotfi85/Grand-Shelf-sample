@@ -1,5 +1,5 @@
-[README.md](https://github.com/user-attachments/files/31406056/README.md)
-# Study Planner
+
+# GrandShelf
 
 A study planning application written in C++, using an SQLite database and a web frontend (HTML + Python server). The project is built with **CMake**.
 
