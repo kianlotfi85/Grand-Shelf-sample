@@ -142,7 +142,3 @@ ctest
   cmake --build build
   ```
 - **Conflict between `build/` and `build-make/`** → These are separate outputs from two different build methods; use only one to avoid confusion.
-
----
-
-📌 If you share the exact contents of `CMakeLists.txt` (e.g. the executable name, specific flags, or additional dependencies in `third_party/`), I can make this README even more precise and complete.
